@@ -9,40 +9,6 @@
   </head>
   <body>
     <h1>Task Manager</h1>
-    <!-- <section class="header">
-      <div class="task-title open">
-        <h2>OPEN</h2>
-        <div class="number">24</div>
-        <span class="plus">➕</span>
-      </div>
-
-      <div class="todo task-title">
-        <h2>TO DO</h2>
-        <div class="number">24</div>
-        <span class="plus">➕</span>
-      </div>
-      <div class="task-title pending">
-        <h2>PENDING</h2>
-        <div class="number">24</div>
-        <span class="plus">➕</span>
-      </div>
-    </section>
-    <section class="header--task">
-      <div class="task">
-        <h4>Task title</h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-      </div>
-      <div class="task">
-        <h4>Task title</h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-      </div>
-      <div class="task">
-        <h4>Task title</h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-      </div>
-    </section> -->
-
-    <!-- /////////////////////////////////////////// -->
     <section class="wrapper">
       <div class="task-title open">
         <h2>OPEN</h2>
@@ -65,14 +31,14 @@
         <div class="task">
           <div class="task-list-title">
             <h4>Task title</h4>
-            <span>✖</span>
+            <span class="delete-task">✖</span>
           </div>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
         </div>
         <div class="task">
           <div class="task-list-title">
             <h4>Task title</h4>
-            <span>✖</span>
+            <span class="delete-task">✖</span>
           </div>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
         </div>
@@ -85,14 +51,14 @@
         <div class="task">
           <div class="task-list-title">
             <h4>Task title</h4>
-            <span>✖</span>
+            <span class="delete-task">✖</span>
           </div>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
         </div>
         <div class="task">
           <div class="task-list-title">
             <h4>Task title</h4>
-            <span>✖</span>
+            <span class="delete-task">✖</span>
           </div>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
         </div>
@@ -101,25 +67,36 @@
         <div class="task">
           <div class="task-list-title">
             <h4>Task title</h4>
-            <span>✖</span>
+            <span class="delete-task">✖</span>
           </div>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
         </div>
         <div class="task">
           <div class="task-list-title">
             <h4>Task title</h4>
-            <span>✖</span>
+            <span class="delete-task">✖</span>
           </div>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
         </div>
         <div class="task">
           <div class="task-list-title">
             <h4>Task title</h4>
-            <span>✖</span>
+            <span class="delete-task">✖</span>
           </div>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
         </div>
       </div>
     </section>
+    <div class="modal hidden">
+      <button class="close-modal">&times;</button>
+      <h1>You can add your task here 😍</h1>
+      <form>
+        <input type="text" placeholder="type here..." class="inp" />
+        <textarea></textarea>
+        <button>Add task</button>
+      </form>
+    </div>
+    <div class="overlay hidden"></div>
+    <script src="index.js"></script>
   </body>
 </html>
