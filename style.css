@@ -33,60 +33,7 @@ h1 {
   margin: 25px;
   color: darkslategrey;
 }
-/* .header {
-  display: flex;
-  justify-content: space-around;
-}
-.task-title {
-  background-color: white;
-  padding-left: 20px;
-  padding-right: 20px;
-  width: 300px;
-  text-align: center;
-  display: flex;
-  font-weight: 200;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 4px 5px -2px gray;
-} */
-/* 
-.todo {
-  align-self: flex-start;
-  border-top: 3px solid var(--color-tertiary);
-}
-.open {
-  border-top: 3px solid var(--color-secondary);
-}
-.pending {
-  border-top: 3px solid var(--color-primary);
-}
-.header--task {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 30px;
-}
-.task {
-  border: 1px solid rgb(216, 216, 216);
-  padding: 10px;
-  width: 300px;
-  box-shadow: 0 4px 5px -2px gray;
-}
-h4 {
-  font-size: 16px;
-}
-p {
-  font-size: 10;
-}
-h2 {
-  justify-self: flex-start;
-}
-.number {
-  border: 1px solid rgb(192, 192, 192);
-  background-color: white;
-  color: black;
-  border-radius: 8px;
-  padding: 0px 5px 0px 5px;
-} */
+
 .wrapper {
   display: grid;
   /* justify-content: space-around; */
@@ -148,4 +95,84 @@ p {
 .task-list-title {
   display: flex;
   justify-content: space-between;
+}
+
+.hidden {
+  display: none;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  /* display: flex;
+  flex-direction: column; */
+  background-color: white;
+  padding: 6rem;
+  border-radius: 5px;
+  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+  z-index: 5;
+}
+.show-modal {
+  font-size: 2rem;
+  font-weight: 600;
+  padding: 1.75rem 3.5rem;
+  margin: 5rem 2rem;
+  border: none;
+  background-color: #fff;
+  color: #444;
+  border-radius: 10rem;
+  cursor: pointer;
+}
+
+.close-modal {
+  position: absolute;
+  top: 1.2rem;
+  right: 2rem;
+  font-size: 5rem;
+  color: #333;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+input,
+textarea {
+  padding: 20px;
+  border: none;
+  border-bottom: 1px solid gray;
+  font-size: 16px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+}
+.plus {
+  cursor: pointer;
+}
+button {
+  display: inline-block;
+  background-color: var(--color-primary-darker);
+  font-size: 20px;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  color: white;
+}
+.delete-task {
+  cursor: pointer;
 }
