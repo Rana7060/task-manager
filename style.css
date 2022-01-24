@@ -52,10 +52,13 @@ h1 {
 .task {
   border: 1px solid rgb(216, 216, 216);
   padding: 10px;
-  box-shadow: 0 4px 5px -2px gray;
+  box-shadow: 0 4px 5px -2px rgb(216, 216, 216);
   margin-bottom: 20px;
   background-color: rgb(216, 216, 216);
   border-radius: 0px 0px 8px 8px;
+}
+.task:hover {
+  background-color: rgb(177, 177, 177);
 }
 .task-title {
   background-color: white;
@@ -79,6 +82,7 @@ h1 {
 .pending {
   border-top: 3px solid var(--color-primary);
 }
+
 .number {
   border: 1px solid rgb(192, 192, 192);
   background-color: white;
@@ -162,6 +166,7 @@ form {
 .plus {
   cursor: pointer;
 }
+
 button {
   display: inline-block;
   background-color: var(--color-primary-darker);
