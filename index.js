@@ -1,68 +1,34 @@
 'use strict';
 
-// const tasksOpen = {
-//   rana: {
-//     task: 'do the laundry',
-//     details: 'wake up and do them in the morning',
-//   },
-//   user: {
-//     task: '',
-//     details: '',
-//   },
+// const user1 = {
+//   title: 'delectus aut autem',
+//   details: 'lorem epsum',
+//   task: 'todo',
 // };
 
-// const tasksTodo = {
-//   rana: {
-//     task: 'Course',
-//     details: 'wake up and do them in the morning',
-//   },
-//   user: {
-//     task: '',
-//     details: '',
-//   },
+// const user2 = {
+//   title: 'quis ut nam facilis et officia qui',
+//   details: 'loremm opsummmmmm',
+//   task: 'todo',
 // };
 
-// const tasksPending = {
-//   rana: {
-//     task: 'Read',
-//     details: 'wake up and do them in the morning',
-//   },
-//   user: {
-//     task: '',
-//     details: '',
-//   },
+// const user3 = {
+//   title: 'fugiat veniam minus',
+//   details: 'lorem opsummm',
+//   task: 'todo',
 // };
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-const user1 = {
-  title: 'delectus aut autem',
-  details: 'lorem epsum',
-};
-
-const user2 = {
-  title: 'quis ut nam facilis et officia qui',
-  details: 'loremm opsummmmmm',
-};
-
-const user3 = {
-  title: 'fugiat veniam minus',
-  details: 'lorem opsummm',
-};
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-const users = [user1, user2, user3];
-
-// const tasks = [tasksOpen, tasksTodo, tasksPending];
-
+const usersTodo = [];
+const usersPending = [];
+const usersOpen = [];
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+// DOM selection
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
-const add = document.querySelectorAll('.plus');
+const add = document.querySelector('.plus');
 const close = document.querySelector('.close-modal');
 const openTask = document.querySelector('.open-task');
+const pendingTask = document.querySelector('.pending-task');
 const todoTask = document.querySelector('.todo-task');
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -70,23 +36,47 @@ const todoTask = document.querySelector('.todo-task');
 const input = document.querySelector('.inp');
 const details = document.querySelector('textarea');
 const btnTask = document.querySelector('.btn-add-task');
+const selectTask = document.querySelector('select');
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// btnTask.addEventListener('click', function (e) {
-//   e.preventDefault();
-//   if (input.value !== '' && details.value !== '') {
-//     const newInput = input.value;
-//     const newDetails = details.value;
-//     tasksOpen.user.task = newInput;
-//     tasksOpen.user.details = newDetails;
-//     console.log(tasksOpen);
-//   } else return;
-// });
-////////////////////////////////////////////////////////////////////////////////////////////////////////
+const deleting = function () {
+  const deleteTask = document.querySelectorAll('.delete-task');
+  deleteTask.forEach(del => {
+    del.addEventListener('click', function (e) {
+      e.target.closest('.task').remove();
+    });
+  });
+};
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+const displayNumber = document.querySelectorAll('.number');
+const displayNumberTask = function () {
+  displayNumber.forEach(function (num) {
+    if (num.closest('.todo')) num.textContent = usersTodo.length;
+    if (num.closest('.pending')) num.textContent = usersPending.length;
+    if (num.closest('.open')) num.textContent = usersOpen.length;
+  });
+};
 
-const displayTasks = function (task) {
-  todoTask.innerHTML = '';
+// const displayTodo = function (task) {
+//   todoTask.innerHTML = '';
+//   task.forEach(function (mov) {
+//     const html = `<div class="task">
+//     <div class="task-list-title">
+//       <h4>${mov.title}</h4>
+//       <span class="delete-task">✖</span>
+//     </div>
+//     <p>${mov.details}</p>
+//   </div>`;
+//     todoTask.insertAdjacentHTML('afterbegin', html);
+//     deleting();
+//   });
+// };
+// displayTodo(usersTodo);
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// display pending
+const displayTask = function (taskTarget, task) {
+  taskTarget.innerHTML = '';
   task.forEach(function (mov) {
     const html = `<div class="task">
     <div class="task-list-title">
@@ -95,20 +85,59 @@ const displayTasks = function (task) {
     </div>
     <p>${mov.details}</p>
   </div>`;
-
-    todoTask.insertAdjacentHTML('afterbegin', html);
+    taskTarget.insertAdjacentHTML('afterbegin', html);
+    deleting();
   });
 };
-displayTasks(users);
-
-///////////////////////////////////////////////////////////////
-add.forEach(plus => {
-  plus.addEventListener('click', function (e) {
-    e.preventDefault();
-    modal.classList.remove('hidden');
-    overlay.classList.remove('hidden');
-  });
+const init = function () {
+  displayNumberTask();
+  displayTask(pendingTask, usersPending);
+  displayTask(openTask, usersOpen);
+  displayTask(todoTask, usersTodo);
+};
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// display pending
+// const displayPending = function (task) {
+//   pendingTask.innerHTML = '';
+//   task.forEach(function (mov) {
+//     const html = `<div class="task">
+//     <div class="task-list-title">
+//       <h4>${mov.title}</h4>
+//       <span class="delete-task">✖</span>
+//     </div>
+//     <p>${mov.details}</p>
+//   </div>`;
+//     pendingTask.insertAdjacentHTML('afterbegin', html);
+//     deleting();
+//   });
+// };
+// displayPending(usersPending);
+// /////////////////////////////////////////////////////////////////////////////////////////////////////////
+// //open task
+// const displayOpen = function (task) {
+//   openTask.innerHTML = '';
+//   task.forEach(function (mov) {
+//     const html = `<div class="task">
+//     <div class="task-list-title">
+//       <h4>${mov.title}</h4>
+//       <span class="delete-task">✖</span>
+//     </div>
+//     <p>${mov.details}</p>
+//   </div>`;
+//     openTask.insertAdjacentHTML('afterbegin', html);
+//     deleting();
+//   });
+// };
+// displayOpen(usersOpen);
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Press button to add a task
+// add.forEach(plus => {
+add.addEventListener('click', function (e) {
+  e.preventDefault();
+  modal.classList.remove('hidden');
+  overlay.classList.remove('hidden');
 });
+// });
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 const closeModal = function (e) {
   e.preventDefault();
@@ -118,27 +147,40 @@ const closeModal = function (e) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 btnTask.addEventListener('click', function (e) {
   e.preventDefault();
-  if (input.value === '' && details.value === '') return;
+  if (input.value === '' && details.value === '' && selectTask !== '') return;
   const object = {
     title: input.value,
     details: details.value,
+    task: selectTask.value,
   };
-  users.push(object);
-  displayTasks(users);
-  closeModal(e);
 
+  if (selectTask.value === 'todo') {
+    usersTodo.push(object);
+    displayTask(todoTask, usersTodo);
+    displayNumberTask();
+  } else if (selectTask.value === 'pending') {
+    usersPending.push(object);
+    displayTask(pendingTask, usersPending);
+    displayNumberTask();
+  } else {
+    usersOpen.push(object);
+    displayTask(openTask, usersOpen);
+    displayNumberTask();
+  }
+
+  closeModal(e);
   input.value = details.value = '';
 });
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 close.addEventListener('click', closeModal);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-const deleteTask = document.querySelectorAll('.delete-task');
+// const deleteTask = document.querySelectorAll('.delete-task');
 
-deleteTask.forEach(del => {
-  del.addEventListener('click', function (e) {
-    e.target.closest('.task').remove();
-  });
-});
-
+// deleteTask.forEach(del => {
+//   del.addEventListener('click', function (e) {
+//     e.target.closest('.task').remove();
+//   });
+// });
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
+init();
